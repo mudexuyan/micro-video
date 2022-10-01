@@ -1,2 +1,8 @@
-edu\ustc\controller\DemoController.class
+edu\ustc\service\VideoService.class
+edu\ustc\entity\Video.class
+edu\ustc\service\impl\VideoServiceImpl.class
+edu\ustc\dao\VideoDao.class
 edu\ustc\VideosApplication.class
+edu\ustc\controller\DemoController.class
+edu\ustc\entity\User.class
+edu\ustc\controller\VideoController.class

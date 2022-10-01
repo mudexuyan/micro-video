@@ -1,2 +1,7 @@
 F:\project\code\micro\micro-category\src\main\java\edu\ustc\CategoryApplication.java
 F:\project\code\micro\micro-category\src\main\java\edu\ustc\controller\DemoController.java
+F:\project\code\micro\micro-category\src\main\java\edu\ustc\service\CategoryService.java
+F:\project\code\micro\micro-category\src\main\java\edu\ustc\dao\CategoryDao.java
+F:\project\code\micro\micro-category\src\main\java\edu\ustc\service\impl\CategoryServiceImpl.java
+F:\project\code\micro\micro-category\src\main\java\edu\ustc\controller\CategoryController.java
+F:\project\code\micro\micro-category\src\main\java\edu\ustc\entity\Category.java

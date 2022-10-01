@@ -23,12 +23,19 @@
 
     <!--查询列表-->
     <select id="queryByFirstLevel" resultMap="CategoriesMap">
-        select
-            p.id, p.name, c.id cid,c.name cname,c.parent_id cpid
-        from category p
-        left join category c
-        on p.id = c.parent_id
-        where p.parent_id is null and p.deleted_at is null
+        SELECT
+            p.id,
+            p.NAME,
+            c.id cid,
+            c.NAME cname,
+            c.parent_id cpid
+        FROM
+            category p
+            LEFT JOIN category c ON p.id = c.parent_id
+            AND c.deleted_at IS NULL
+        WHERE
+            p.parent_id IS NULL
+            AND p.deleted_at IS NULL
     </select>
 
 

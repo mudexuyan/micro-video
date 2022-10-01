@@ -1,2 +1,7 @@
+edu\ustc\controller\UserController.class
+edu\ustc\dao\UserDao.class
 edu\ustc\UsersApplication.class
+edu\ustc\service\UserService.class
+edu\ustc\service\impl\UserServiceImpl.class
 edu\ustc\controller\DemoController.class
+edu\ustc\entity\User.class

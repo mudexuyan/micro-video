@@ -1,7 +1,9 @@
 F:\project\code\micro\micro-admin\src\main\java\edu\ustc\dao\AdminDao.java
 F:\project\code\micro\micro-admin\src\main\java\edu\ustc\entity\Admin.java
 F:\project\code\micro\micro-admin\src\main\java\edu\ustc\controller\AdminController.java
+F:\project\code\micro\micro-admin\src\main\java\edu\ustc\config\RedisTemplateConfig.java
 F:\project\code\micro\micro-admin\src\main\java\edu\ustc\service\impl\AdminServiceImpl.java
 F:\project\code\micro\micro-admin\src\main\java\edu\ustc\controller\DemoController.java
+F:\project\code\micro\micro-admin\src\main\java\edu\ustc\dto\AdminDTO.java
 F:\project\code\micro\micro-admin\src\main\java\edu\ustc\AdminApplication.java
 F:\project\code\micro\micro-admin\src\main\java\edu\ustc\service\AdminService.java

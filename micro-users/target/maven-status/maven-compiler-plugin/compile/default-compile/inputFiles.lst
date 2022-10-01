@@ -1,2 +1,7 @@
 F:\project\code\micro\micro-users\src\main\java\edu\ustc\UsersApplication.java
+F:\project\code\micro\micro-users\src\main\java\edu\ustc\entity\User.java
+F:\project\code\micro\micro-users\src\main\java\edu\ustc\service\UserService.java
+F:\project\code\micro\micro-users\src\main\java\edu\ustc\controller\UserController.java
+F:\project\code\micro\micro-users\src\main\java\edu\ustc\dao\UserDao.java
+F:\project\code\micro\micro-users\src\main\java\edu\ustc\service\impl\UserServiceImpl.java
 F:\project\code\micro\micro-users\src\main\java\edu\ustc\controller\DemoController.java

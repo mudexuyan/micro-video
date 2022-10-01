@@ -1,2 +1,7 @@
-edu\ustc\controller\DemoController.class
+edu\ustc\entity\Category.class
 edu\ustc\CategoryApplication.class
+edu\ustc\controller\CategoryController.class
+edu\ustc\controller\DemoController.class
+edu\ustc\dao\CategoryDao.class
+edu\ustc\service\CategoryService.class
+edu\ustc\service\impl\CategoryServiceImpl.class
