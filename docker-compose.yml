@@ -1,0 +1,56 @@
+version: "3.9"
+
+networks:
+  micro_network:
+
+volumes:
+  data:
+  redisdata:
+
+services:
+  nacos:
+    image: nacos/nacos-server:latest
+    ports:
+      - "8848:8848"
+    environment:
+      - "JVM_XMS=256m"
+      - "JVM_XMX=256m"
+      - "MODE=standalone"
+    networks:
+      - micro_network
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    networks:
+      - micro_network
+    volumes:
+      - data:/var/lib/mysql
+      - ./micro.sql:/docker-entrypoint-initdb.d/micro.sql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+      - "MYSQL_DATABASE=micro"
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - micro_network
+    volumes:
+      - redisdata:/data
+
+  node:
+    image: node:latest
+#    user: "node"
+    networks:
+      - micro_network
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./admin-dist:/home/node/app
+    expose:
+      - "8081"
+    command: "anywhere -p 9091"

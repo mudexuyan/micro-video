@@ -1,0 +1,51 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+    gateway:
+      routes: #路由规则 id uri path
+         - id: admin_router
+           uri: lb://API-ADMIN
+           predicates:       # 路由
+             - Path=/admin/tokens,/admin/admin-user,/admin/tokens/**
+           filters:          # 过滤
+             - StripPrefix=1  # 1删除第一级/admin，2删除第二级/demos
+
+         - id: category_router
+           uri: lb://API-CATEGORY
+           predicates:
+             - Path=/admin/categories/**
+           filters:
+             - StripPrefix=1
+             - Token=true,filter
+
+         - id: users_router
+           uri: lb://API-USERS
+           predicates:
+             - Path=/admin/users/**
+           filters:
+             - StripPrefix=1   # 1删除第一级/users，2删除第二级/demos
+             - Token=true,wang
+
+         - id: videos_router
+           uri: lb://API-VIDEOS
+           predicates:
+             - Path=/admin/videos/**
+           filters:
+             - StripPrefix=1
+             - Token=true
+
+      globalcors:  # 跨域
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+  redis:
+    host: 192.168.0.108
+    port: 6379
+

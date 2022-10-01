@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="IU-222.4167.29">
+    <data-source name="micro" uuid="6ab063f5-4ee8-47e5-bf07-5dfbef3bb214">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+      <secret-storage>forget</secret-storage>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="micro" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+  </component>
+</project>
