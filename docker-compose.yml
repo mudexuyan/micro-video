@@ -41,16 +41,51 @@ services:
     volumes:
       - redisdata:/data
 
-  node:
-    image: node:latest
-#    user: "node"
-    networks:
-      - micro_network
-    working_dir: /home/node/app
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - ./admin-dist:/home/node/app
-    expose:
-      - "8081"
-    command: "anywhere -p 9091"
+#  node:
+#    image: node:latest
+##    user: "node"
+#    networks:
+#      - micro_network
+#    working_dir: /home/node/app
+#    environment:
+#      - NODE_ENV=production
+#    volumes:
+#      - ./admin-dist:/home/node/app
+#    expose:
+#      - "8081"
+#    command: "anywhere -p 9091"
+
+  admins:
+    build:
+      context: ./images/admin
+      dockerfile: Dockerfile
+    ports:
+      - "8980:8980"
+
+  category:
+    build:
+      context: ./images/category
+      dockerfile: Dockerfile
+    ports:
+      - "8981:8981"
+
+  gateway:
+    build:
+      context: ./images/gateway
+      dockerfile: Dockerfile
+    ports:
+      - "9999:9999"
+
+  users:
+    build:
+      context: ./images/users
+      dockerfile: Dockerfile
+    ports:
+      - "8982:8982"
+
+  videos:
+    build:
+      context: ./images/videos
+      dockerfile: Dockerfile
+    ports:
+      - "8983:8983"
