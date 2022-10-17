@@ -1,8 +1,13 @@
 package edu.ustc.service.impl;
 
 import edu.ustc.dao.VideoDao;
+import edu.ustc.entity.Category;
+import edu.ustc.entity.User;
 import edu.ustc.entity.Video;
+import edu.ustc.feighclients.CategoryClients;
+import edu.ustc.feighclients.UserClients;
 import edu.ustc.service.VideoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +30,12 @@ public class VideoServiceImpl implements VideoService {
     @Resource
     private VideoDao videoDao;
 
+    @Autowired
+    private CategoryClients categoryClients;
+
+    @Autowired
+    private UserClients userClients;
+
     /**
      * 通过ID查询单条数据
      *
@@ -39,8 +50,8 @@ public class VideoServiceImpl implements VideoService {
     /**
      * 分页查询
      *
-     * @param video 筛选条件
-     * @param pageRequest      分页对象
+     * @param video       筛选条件
+     * @param pageRequest 分页对象
      * @return 查询结果
      */
     @Override
@@ -88,7 +99,14 @@ public class VideoServiceImpl implements VideoService {
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<Video> findAllByKeywords(int offset, int limit, String id, String title, String categoryId, String username) {
         int start = (offset - 1) * limit;
-        return videoDao.findAllByKeywords(start, limit, id, title, categoryId, username);
+        List<Video> res = videoDao.findAllByKeywords(start, limit, id, title, categoryId, username);
+        res.forEach(v -> {
+            User user = userClients.user(v.getUid().toString());
+            v.setUploader(user);
+            Category category = categoryClients.category(v.getCategoryId().toString());
+            v.setCategory(category.getName());
+        });
+        return res;
     }
 
     @Override

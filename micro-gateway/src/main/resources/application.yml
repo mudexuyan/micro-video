@@ -2,21 +2,21 @@ server:
   port: 9999
 spring:
   application:
-    name: API-GATEWAY
+    name: ADMIN-GATEWAY
   cloud:
     nacos:
       server-addr: localhost:8848
     gateway:
       routes: #路由规则 id uri path
          - id: admin_router
-           uri: lb://API-ADMIN
+           uri: lb://ADMIN-ADMIN
            predicates:       # 路由
              - Path=/admin/tokens,/admin/admin-user,/admin/tokens/**
            filters:          # 过滤
              - StripPrefix=1  # 1删除第一级/admin，2删除第二级/demos
 
          - id: category_router
-           uri: lb://API-CATEGORY
+           uri: lb://ADMIN-CATEGORIES
            predicates:
              - Path=/admin/categories/**
            filters:
@@ -24,7 +24,7 @@ spring:
              - Token=true,filter
 
          - id: users_router
-           uri: lb://API-USERS
+           uri: lb://ADMIN-USERS
            predicates:
              - Path=/admin/users/**
            filters:
@@ -32,7 +32,7 @@ spring:
              - Token=true,wang
 
          - id: videos_router
-           uri: lb://API-VIDEOS
+           uri: lb://ADMIN-VIDEOS
            predicates:
              - Path=/admin/videos/**
            filters:
@@ -46,6 +46,6 @@ spring:
             allowedMethods: "*"
             allowedHeaders: "*"
   redis:
-    host: 192.168.0.108
+    host: localhost
     port: 6379
 

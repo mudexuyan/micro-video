@@ -2,7 +2,6 @@ package edu.ustc.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.catalina.User;
 
 import java.util.Date;
 import java.io.Serializable;
@@ -60,6 +59,21 @@ public class Video implements Serializable {
 
     private User uploader;//用户up主信息
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public User getUploader() {
+        return uploader;
+    }
+
+    public void setUploader(User uploader) {
+        this.uploader = uploader;
+    }
 
     public Integer getId() {
         return id;

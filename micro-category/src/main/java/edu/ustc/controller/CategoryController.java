@@ -53,7 +53,6 @@ public class CategoryController {
         return categoryService.insert(category);
     }
 
-
     //删除
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer id){
@@ -61,5 +60,13 @@ public class CategoryController {
         category.setDeletedAt(new Date());
         categoryService.update(category);
     }
+
+    @GetMapping("/{id}")
+    public Category category(@PathVariable("id") Integer id) {
+        log.info("接收到的类别id: {}", id);
+        Category category = categoryService.queryById(id);
+        return category;
+    }
+
 }
 
