@@ -26,8 +26,10 @@ public class Category implements Serializable {
      * 父级分类id
      */
     @JsonProperty("parent_id")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL)
     private Integer parentId;
 
+    @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
     private List<Category> children;
 
     public List<Category> getChildren() {

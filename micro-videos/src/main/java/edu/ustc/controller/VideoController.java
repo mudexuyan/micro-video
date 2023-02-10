@@ -2,14 +2,12 @@ package edu.ustc.controller;
 
 import edu.ustc.entity.Video;
 import edu.ustc.service.VideoService;
+import edu.ustc.utils.JSONUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -53,6 +51,15 @@ public class VideoController {
         result.put("total_count", totalCounts);
         result.put("items", items);
         return result;
+    }
+
+    @PatchMapping("/{id}")
+    public Video update(@PathVariable("id") Integer id, @RequestBody Video video){
+        log.info("更新类别");
+
+        log.info(JSONUtils.writeJSON(video));
+        video.setId(id);
+        return videoService.update(video);
     }
 }
 

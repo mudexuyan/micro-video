@@ -386,7 +386,7 @@
                 scopedSlots: e._u([{
                     key: "default", fn: function (e) {
                         var t = e.row;
-                        return [n("el-avatar", {attrs: {shape: "square", src: t.link}})]
+                        return [n("el-avatar", {attrs: {shape: "square", src: t.cover}})]
                     }
                 }])
             }), n("el-table-column", {
@@ -402,7 +402,7 @@
                 scopedSlots: e._u([{
                     key: "default", fn: function (t) {
                         var r = t.row;
-                        return [n("span", [e._v(e._s(r.uid))])]
+                        return [n("span", [e._v(e._s(r.uploader.name))])]
                     }
                 }])
             }), n("el-table-column", {

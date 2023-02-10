@@ -54,6 +54,14 @@
         </where>
     </sql>
 
+    <!--查询单个-->
+    <select id="queryById" resultMap="VideoMap">
+        select
+            id, title, intro, uid, cover, link, category_id, created_at, updated_at, deleted_at
+        from video
+        where id = #{id}
+    </select>
+
     <!--分页查询-->
     <select id="findAllByKeywords" resultMap="VideoCategoryUserMap">
         select
@@ -77,6 +85,46 @@
         left join user u on v.uid = u.id
         <include refid="keyWordFields"/>
     </select>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update video
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="intro != null and intro != ''">
+                intro = #{intro},
+            </if>
+            <if test="uid != null">
+                uid = #{uid},
+            </if>
+            <if test="cover != null and cover != ''">
+                cover = #{cover},
+            </if>
+            <if test="link != null and link != ''">
+                link = #{link},
+            </if>
+            <if test="categoryId != null">
+                category_id = #{categoryId},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt},
+            </if>
+            <if test="deletedAt != null">
+                deleted_at = #{deletedAt},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from video where id = #{id}
+    </delete>
 
 </mapper>
 

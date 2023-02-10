@@ -1,5 +1,6 @@
 package edu.ustc.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -48,6 +49,7 @@ public class Video implements Serializable {
     private Date createdAt;
 
     @JsonProperty("updated_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedAt;
 
     @JsonProperty("deleted_at")
