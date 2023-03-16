@@ -126,5 +126,11 @@
         delete from video where id = #{id}
     </delete>
 
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into micro.video(title, intro, uid, cover, link, category_id, created_at, updated_at, deleted_at)
+        values (#{title}, #{intro}, #{uid}, #{cover}, #{link}, #{categoryId}, #{createdAt}, #{updatedAt}, #{deletedAt})
+    </insert>
+
 </mapper>
 

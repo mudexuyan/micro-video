@@ -12,4 +12,13 @@ public class JSONUtils {
         }
 
     }
+
+    public static String writeValueAsString(Object o) {
+        try {
+            return new ObjectMapper().writeValueAsString(o);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return  null;
+    }
 }

@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -68,6 +69,8 @@ public class VideoServiceImpl implements VideoService {
      */
     @Override
     public Video insert(Video video) {
+        video.setCreatedAt(new Date());//设置创建日期
+        video.setUpdatedAt(new Date());//设置更新日期
         this.videoDao.insert(video);
         return video;
     }

@@ -1,12 +1,16 @@
 package edu.ustc.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import edu.ustc.entity.Category;
 import edu.ustc.service.CategoryService;
 import edu.ustc.utils.JSONUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 import java.util.List;
@@ -21,6 +25,9 @@ import java.util.List;
 @RequestMapping("/categories")
 public class CategoryController {
     private CategoryService categoryService;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     private static final Logger log = LoggerFactory.getLogger(CategoryController.class);
 
@@ -66,6 +73,30 @@ public class CategoryController {
         log.info("接收到的类别id: {}", id);
         Category category = categoryService.queryById(id);
         return category;
+    }
+
+    //调用算法的分类并存储到数据库中
+    @GetMapping("/category")
+    public void model() {
+        log.info("调用算法的分类并存储到数据库中");
+
+        // 请求头信息
+        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Content-Type", "multipart/form-data;charset=gbk");
+        headers.setContentType(MediaType.valueOf("application/json;charset=UTF-8"));
+//        headers.add("headParam1", "headParamValue");
+//        MultiValueMap<String,String> map = new LinkedMultiValueMap();
+//        map.add("video",url);
+        String response = restTemplate.getForObject("http://172.16.227.68:1111/category",  String.class);
+        List<String> result =  JSONObject.parseArray(response,String.class);
+        System.out.println(result);
+
+        for(int i=0;i<result.size();++i){
+            Category tmp = new Category();
+            tmp.setName(result.get(i));
+            categoryService.insert(tmp);
+        }
+
     }
 
 }

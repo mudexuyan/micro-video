@@ -1,8 +1,15 @@
 server:
   port: 8983
+  tomcat:
+    uri-encoding: UTF-8
 spring:
   application:
     name: ADMIN-VIDEOS
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
   cloud:
     nacos:
       server-addr: localhost:8848

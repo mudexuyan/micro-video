@@ -45,7 +45,7 @@ public class AdminController {
         Admin adminDB = adminService.login(admin);
         //登录成功，生成token
         String token = session.getId();
-        redisTemplate.opsForValue().set(RedisPrefix.TOKEN_KEY+token, adminDB, 30, TimeUnit.MINUTES);
+        redisTemplate.opsForValue().set(RedisPrefix.TOKEN_KEY+token, adminDB, 90, TimeUnit.MINUTES);
         res.put("token",token);
 
         return res;
